@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 // const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String },
   username: {
     type: String,
     required: true,
@@ -17,8 +17,7 @@ const userSchema = new Schema({
     type: String
   },
   balance: {
-    type: Number,
-    required: true
+    type: Number
   },
   withdraw: {
     type: Number
@@ -37,34 +36,18 @@ const userSchema = new Schema({
   { strict: false }
 );
 
-// // Define schema methods
-// UserSchema.methods = {
-// 	checkPassword: function (inputPassword) {
-// 		return bcrypt.compareSync(inputPassword, this.password)
-// 	},
-// 	hashPassword: plainTextPassword => {
-// 		return bcrypt.hashSync(plainTextPassword, 10)
-// 	}
-// }
 
-// // Define hooks for pre-saving
-// UserSchema.pre('save', function (next) {
-// 	if (!this.password) {
-// 		console.log('models/Users.js =======NO PASSWORD PROVIDED=======')
-// 		next()
-// 	} else {
-// 		console.log('models/Users.js hashPassword in pre save');
-
-// 		this.password = this.hashPassword(this.password)
-// 		next()
-// 	}
-// })
-
-const User = mongoose.model("sign-up", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
 
-
-// const Book = mongoose.model("Request", bookSchema);
-
-// module.exports = Book;
+// {
+//   "name": "Daniel Jones",
+//   "username": "hollywoodchase",
+//   "username_is_verified": true,
+//   "password": "hollywood",
+//   "balance": 5000,
+//   "withdraw": "",
+//   "deposit": "",
+//   "lastTrans": ""
+// }

@@ -5,6 +5,7 @@ const passport = require('../passport')
 
 router.post('/', (req, res) => {
     console.log('user signup');
+    console.log(req.body)
 
     let { username, password } = req.body
     // VALIDATION
@@ -30,8 +31,10 @@ router.post('/', (req, res) => {
                 username: username,
                 password: password
             })
+            console.log("new User", newUser)
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)
+                res.send(savedUser)
                 res.json(savedUser)
             })
         }
@@ -64,6 +67,7 @@ router.post('/login',
     }));
 
 router.get('/', (req, res, next) => {
+    console.log("goo goo gaga");
     console.log('===== user!!======')
     console.log(req.user)
     if (req.user) {

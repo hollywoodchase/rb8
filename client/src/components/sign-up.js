@@ -29,18 +29,24 @@ class Signup extends Component {
 		this.setState({ error: false })
 
 		//request to server to add a new username/password
-		axios.post('user/', {
+		axios.post('/user/', {
 			username: this.state.username,
-			password: this.state.password
+			password: this.state.password,
+			
 		})
 			.then(response => {
 				console.log(response)
+				if (response.data.error === "Password needs to be a minimum of eight characters") {
+					alert("Password needs to be a minimum of eight characters")
+				}
 				if (!response.data.error) {
 					console.log('successful signup')
-					this.props.history.push("/login");
+					this.props.history.push("/login")
 				} else {
 					this.setState({ error: true, errorMessage: response.data.error })
-					console.log('username already taken')
+					alert(response.data.error)
+					console.log(response.data.error)
+					
 				}
 			}).catch(error => {
 				console.log('signup error: ')
